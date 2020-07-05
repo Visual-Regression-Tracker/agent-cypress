@@ -4,7 +4,7 @@ let vrt: VisualRegressionTracker;
 const config = Cypress.config();
 const { vrt_config } = Cypress.env()
 
-Cypress.Commands.add("track", {
+export const addTrackCommand = () => Cypress.Commands.add("track", {
     prevSubject: ['optional', 'element', 'window', 'document'],
 }, (subject, name, options,) => {
     let imagePath: string;

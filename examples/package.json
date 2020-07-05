@@ -1,0 +1,15 @@
+{
+  "name": "@visual-regression-tracker/cypress-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@visual-regression-tracker/agent-cypress": "file:..",
+    "cypress": "^4.9.0"
+  }
+}
