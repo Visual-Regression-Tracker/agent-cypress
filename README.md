@@ -41,11 +41,8 @@ module.exports = (on, config) => {
 ## Usage
 All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
 
-_Default `diffTollerancePercent` is `1`_
+Default `diffTollerancePercent` is `1`
 
-_Viewport is taken from `Cypress.config()`_
-
-_Browser is taken from `Cypress.browser.name`_
 ```js
 cy.track('Whole page with default params')
 
@@ -57,3 +54,7 @@ cy.track("Whole page with additional options", {
     diffTollerancePercent: 0,
 })
 ```
+
+Viewport is taken from `Cypress.config()`
+
+Browser is taken from `Cypress.browser.name`
