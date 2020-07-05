@@ -29,16 +29,9 @@ module.exports = (on, config) => {
 {
     "env": {
         "vrt_config": {
-            // Fill with your data
             "apiUrl": "http://localhost:4200",
-
-            // Fill with your data
             "branchName": "develop",
-
-            // Fill with your data
             "projectId": "8cf7eba6-1378-449b-99c6-2e6b9e284e44",
-
-            // Fill with your data
             "apiKey": "F3GCS56KVA4168HAN53YN31ASSVG"
         }
     }
