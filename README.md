@@ -40,6 +40,7 @@ module.exports = (on, config) => {
 
 ## Usage
 All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
+
 _Default `diffTollerancePercent` is `1`_
 
 _Viewport is taken from `Cypress.config()`_
