@@ -1,0 +1,36 @@
+{
+  "name": "agent-cypress",
+  "version": "1.0.0",
+  "description": "Visual Regression Tracker integration plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Visual-Regression-Tracker/agent-cypress.git"
+  },
+  "keywords": [
+    "regression",
+    "visual-regression",
+    "visual-regression-tracker"
+  ],
+  "author": "Pavel Strunkin <pashidlos@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Visual-Regression-Tracker/agent-cypress/issues"
+  },
+  "homepage": "https://github.com/Visual-Regression-Tracker/agent-cypress#readme",
+  "dependencies": {
+    "@visual-regression-tracker/sdk-js": "0.0.8"
+  },
+  "devDependencies": {
+    "@cypress/browserify-preprocessor": "^3.0.0",
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "cypress": "^4.9.0",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.9.6"
+  }
+}
