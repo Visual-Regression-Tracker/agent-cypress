@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@visual-regression-tracker/agent-cypress": "^1.0.0",
+    "@visual-regression-tracker/agent-cypress": "^1.0.2",
     "cypress": "^4.9.0"
   }
 }

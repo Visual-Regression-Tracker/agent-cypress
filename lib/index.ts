@@ -9,7 +9,6 @@ declare global {
 
         interface TrackOptions {
             os?: string;
-            viewport?: string;
             device?: string;
             diffTollerancePercent?: number;
         }
