@@ -1,9 +1,7 @@
 {
   "name": "@visual-regression-tracker/agent-cypress",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Visual Regression Tracker integration plugin",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc"
