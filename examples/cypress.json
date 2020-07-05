@@ -1,1 +1,10 @@
-{}
+{
+    "env": {
+        "vrt_config": {
+            "apiUrl": "http://localhost:4200",
+            "branchName": "develop",
+            "projectId": "8cf7eba6-1378-449b-99c6-2e6b9e284e44",
+            "apiKey": "F3GCS56KVA4168HAN53YN31ASSVG"
+        }
+    }
+}
