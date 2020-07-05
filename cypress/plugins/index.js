@@ -11,7 +11,8 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-const { addVisualRegressionTrackerPlugin } = require('./vrt-plugin');
+// const { addVisualRegressionTrackerPlugin } = require('./vrt-plugin');
+const { addVisualRegressionTrackerPlugin } = require('../../dist/vrt-plugin');
 
 /**
  * @type {Cypress.PluginConfig}

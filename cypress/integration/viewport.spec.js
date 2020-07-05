@@ -4,7 +4,7 @@
 // load the type definition for new command we are adding "cy.dataCy"
 // note: this definition also will load regular Cypress definition
 // because index.d.ts references global "cypress" types
-/// <reference path="../../support/index.d.ts" />
+/// <reference path="../../dist/index.d.ts" />
 
 context('Viewport', () => {
   beforeEach(() => {
@@ -19,7 +19,6 @@ context('Viewport', () => {
     cy.viewport(320, 480)
 
     cy.track("first", {
-      clip: { x: 0, y: 0, width: 100, height: 100 },
       viewport: "testView",
       os: "Mac",
       device: "PC",
