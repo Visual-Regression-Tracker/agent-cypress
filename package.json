@@ -1,6 +1,6 @@
 {
   "name": "@visual-regression-tracker/agent-cypress",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Visual Regression Tracker integration plugin",
   "scripts": {
     "test": "jest",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Visual-Regression-Tracker/agent-cypress#readme",
   "dependencies": {
-    "@visual-regression-tracker/sdk-js": "0.0.8"
+    "@visual-regression-tracker/sdk-js": "^2.0.0"
   },
   "devDependencies": {
     "@cypress/browserify-preprocessor": "^3.0.0",
