@@ -1,5 +1,7 @@
 # Native integration for [Cypress](https://www.cypress.io/) with [Visual Regression Tracker](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker)
 
+Npm: https://www.npmjs.com/package/@visual-regression-tracker/agent-cypress
+
 ## Installation
 
 ### Add package
