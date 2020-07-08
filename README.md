@@ -77,3 +77,6 @@ cy.track("Whole page with additional options", {
 Viewport is taken from `Cypress.config()`
 
 Browser is taken from `Cypress.browser.name`
+
+## Examples
+https://github.com/Visual-Regression-Tracker/examples-js
