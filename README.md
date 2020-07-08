@@ -36,7 +36,7 @@ module.exports = (on, config) => {
 
 `<rootDir>/cypress.json`
 
-```json
+```
 {
   "env": {
     "vrt_config": {
