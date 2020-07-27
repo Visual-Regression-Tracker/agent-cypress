@@ -24,7 +24,7 @@ export const addTrackCommand = () =>
         })
         .then(() => cy.task("ENCODE_IMAGE", { imagePath }, { log: false }))
         .then((imageBase64) => {
-          if (imageBase64 === undefined) {
+          if (!imageBase64) {
             throw new Error("Image is missing or not encoded");
           }
           if (!vrt) {
