@@ -39,7 +39,7 @@ module.exports = (on, config) => {
 ```
 {
   "env": {
-    "vrt_config": {
+    "visualRegressionTracker": {
       // apiUrl - URL where backend is running
       "apiUrl": "http://localhost:4200",
 
