@@ -1,6 +1,6 @@
 {
     "env": {
-        "vrt_config": {
+        "visualRegressionTracker": {
             "apiUrl": "http://localhost:4200",
             "branchName": "develop",
             "project": "Default project",
