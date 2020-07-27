@@ -23,6 +23,6 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-import { addTrackCommand } from '../../dist/commands'
+import { addTrackCommand } from "../../dist/commands";
 
 addTrackCommand();

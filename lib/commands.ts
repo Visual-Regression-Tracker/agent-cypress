@@ -1,3 +1,4 @@
+/* global Cypress */
 import { VisualRegressionTracker } from "@visual-regression-tracker/sdk-js";
 
 let vrt: VisualRegressionTracker;
