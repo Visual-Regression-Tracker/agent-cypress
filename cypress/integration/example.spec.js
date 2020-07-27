@@ -1,3 +1,5 @@
+/* global cy */
+
 context("Visual Regression Tracker", () => {
   beforeEach(() => {
     cy.visit("https://example.cypress.io/commands/viewport");

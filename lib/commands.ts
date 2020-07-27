@@ -1,8 +1,8 @@
-/* global Cypress */
+/* global Cypress, cy */
 import { VisualRegressionTracker } from "@visual-regression-tracker/sdk-js";
 
 let vrt: VisualRegressionTracker;
-const { vrt_config } = Cypress.env();
+const { visualRegressionTracker } = Cypress.env();
 
 export const addTrackCommand = () =>
   Cypress.Commands.add(
@@ -29,7 +29,7 @@ export const addTrackCommand = () =>
             throw new Error("Image is missing or not encoded");
           }
           if (!vrt) {
-            vrt = new VisualRegressionTracker(vrt_config);
+            vrt = new VisualRegressionTracker(visualRegressionTracker);
           }
           const config = Cypress.config();
           return vrt.track({
