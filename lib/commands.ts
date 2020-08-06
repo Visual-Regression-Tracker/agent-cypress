@@ -1,8 +1,4 @@
 /* global Cypress, cy */
-import { VisualRegressionTracker } from "@visual-regression-tracker/sdk-js";
-
-let vrt: VisualRegressionTracker;
-const { visualRegressionTracker } = Cypress.env();
 
 export const addTrackCommand = () =>
   Cypress.Commands.add(
@@ -14,7 +10,8 @@ export const addTrackCommand = () =>
       let imagePath: string;
       let pixelRatio: number;
       const target = subject ? cy.wrap(subject) : cy;
-      return target
+
+      target
         .screenshot(name, {
           ...options,
           onAfterScreenshot: (el, props) => {
@@ -24,25 +21,25 @@ export const addTrackCommand = () =>
           },
         })
         .then(() => cy.task("ENCODE_IMAGE", { imagePath }, { log: false }))
-        .then((imageBase64) => {
-          if (!imageBase64) {
-            throw new Error("Image is missing or not encoded");
+        .then((imageBase64) =>
+          cy.task(
+            "TRACK_IMAGE",
+            {
+              name,
+              imageBase64,
+              browser: Cypress.browser.name,
+              pixelRatio,
+              os: options?.os,
+              device: options?.device,
+              diffTollerancePercent: options?.diffTollerancePercent,
+            },
+            { log: false }
+          )
+        )
+        .then((err) => {
+          if (err) {
+            throw new Error(err);
           }
-          if (!vrt) {
-            vrt = new VisualRegressionTracker(visualRegressionTracker);
-          }
-          const config = Cypress.config();
-          return vrt.track({
-            name,
-            imageBase64: imageBase64 || "",
-            browser: Cypress.browser.name,
-            viewport: `${config.viewportWidth * pixelRatio}x${
-              config.viewportHeight * pixelRatio
-            }`,
-            os: options?.os,
-            device: options?.device,
-            diffTollerancePercent: options?.diffTollerancePercent,
-          });
         });
     }
   );
