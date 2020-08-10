@@ -60,7 +60,6 @@ module.exports = (on, config) => {
 
 All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
 
-Default `diffTollerancePercent` is `1`
 
 ```js
 cy.track("Whole page with default params");
@@ -70,7 +69,7 @@ cy.get("#navbar").track("Separate element with default params");
 cy.track("Whole page with additional options", {
   os: "MacOS",
   device: "Cloud agent",
-  diffTollerancePercent: 0,
+  diffTollerancePercent: 1,
 });
 ```
 
