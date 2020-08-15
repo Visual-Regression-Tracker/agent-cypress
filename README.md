@@ -1,5 +1,7 @@
 # Native integration for [Cypress](https://www.cypress.io/) with [Visual Regression Tracker](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4ebb8d37b8f943548e992a7d063ac998)](https://www.codacy.com/gh/Visual-Regression-Tracker/agent-cypress?utm_source=github.com&utm_medium=referral&utm_content=Visual-Regression-Tracker/agent-cypress&utm_campaign=Badge_Grade)
+
 Npm: https://www.npmjs.com/package/@visual-regression-tracker/agent-cypress
 
 ## Installation
@@ -13,9 +15,15 @@ Npm: https://www.npmjs.com/package/@visual-regression-tracker/agent-cypress
 `<rootDir>/cypress/support/commands.js`
 
 ```js
-import { addTrackCommand } from "@visual-regression-tracker/agent-cypress/dist/commands";
+import {
+  addVrtTrackCommand,
+  addVrtStartCommand,
+  addVrtStopCommand,
+} from "@visual-regression-tracker/agent-cypress/dist/commands";
 
-addTrackCommand();
+addVrtStartCommand();
+addVrtStopCommand();
+addVrtTrackCommand();
 ```
 
 ### Add plugin
@@ -36,7 +44,7 @@ module.exports = (on, config) => {
 
 `<rootDir>/cypress.json`
 
-```
+```js
 {
   "env": {
     "visualRegressionTracker": {
@@ -58,15 +66,22 @@ module.exports = (on, config) => {
 
 ## Usage
 
-All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
-
+### Setup
 
 ```js
-cy.track("Whole page with default params");
+cy.vrtStart();
+```
 
-cy.get("#navbar").track("Separate element with default params");
+### Assert
 
-cy.track("Whole page with additional options", {
+All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
+
+```js
+cy.vrtTrack("Whole page with default params");
+
+cy.get("#navbar").vrtTrack("Separate element with default params");
+
+cy.vrtTrack("Whole page with additional options", {
   os: "MacOS",
   device: "Cloud agent",
   diffTollerancePercent: 1,
@@ -77,5 +92,12 @@ Viewport is taken from `Cypress.config()`
 
 Browser is taken from `Cypress.browser.name`
 
+### Teadown
+
+```js
+cy.vrtStop();
+```
+
 ## Examples
+
 https://github.com/Visual-Regression-Tracker/examples-js
