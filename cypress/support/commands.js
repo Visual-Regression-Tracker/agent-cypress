@@ -23,6 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-import { addTrackCommand } from "../../dist/commands";
+import {
+  addVrtTrackCommand,
+  addVrtStartCommand,
+  addVrtStopCommand,
+} from "../../dist/commands";
 
-addTrackCommand();
+addVrtStartCommand();
+addVrtStopCommand();
+addVrtTrackCommand();

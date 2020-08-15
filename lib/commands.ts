@@ -1,8 +1,56 @@
 /* global Cypress, cy */
 
-export const addTrackCommand = () =>
+export const addVrtStartCommand = () => {
   Cypress.Commands.add(
-    "track",
+    "vrtStart",
+    {
+      prevSubject: ["optional"],
+    },
+    () => {
+      cy.task("VRT_START", {}, { log: false })
+        .then((err) => {
+          if (err) {
+            throw new Error(err);
+          }
+        })
+        .then(() =>
+          Cypress.log({
+            name: "Visual Regression Tracker",
+            displayName: "VRT",
+            message: "Started",
+          })
+        );
+    }
+  );
+};
+
+export const addVrtStopCommand = () => {
+  Cypress.Commands.add(
+    "vrtStop",
+    {
+      prevSubject: ["optional"],
+    },
+    () => {
+      cy.task("VRT_STOP", {}, { log: false })
+        .then((err) => {
+          if (err) {
+            throw new Error(err);
+          }
+        })
+        .then(() =>
+          Cypress.log({
+            name: "Visual Regression Tracker",
+            displayName: "VRT",
+            message: "Stopped",
+          })
+        );
+    }
+  );
+};
+
+export const addVrtTrackCommand = () =>
+  Cypress.Commands.add(
+    "vrtTrack",
     {
       prevSubject: ["optional", "element", "window", "document"],
     },
@@ -40,6 +88,13 @@ export const addTrackCommand = () =>
           if (err) {
             throw new Error(err);
           }
-        });
+        })
+        .then(() =>
+          Cypress.log({
+            name: "Visual Regression Tracker",
+            displayName: "VRT",
+            message: `tracked ${name}`,
+          })
+        );
     }
   );

@@ -13,9 +13,15 @@ Npm: https://www.npmjs.com/package/@visual-regression-tracker/agent-cypress
 `<rootDir>/cypress/support/commands.js`
 
 ```js
-import { addTrackCommand } from "@visual-regression-tracker/agent-cypress/dist/commands";
+import {
+  addVrtTrackCommand,
+  addVrtStartCommand,
+  addVrtStopCommand,
+} from "@visual-regression-tracker/agent-cypress/dist/commands";
 
-addTrackCommand();
+addVrtStartCommand();
+addVrtStopCommand();
+addVrtTrackCommand();
 ```
 
 ### Add plugin
@@ -36,7 +42,7 @@ module.exports = (on, config) => {
 
 `<rootDir>/cypress.json`
 
-```
+```js
 {
   "env": {
     "visualRegressionTracker": {
@@ -58,15 +64,22 @@ module.exports = (on, config) => {
 
 ## Usage
 
-All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
-
+### Setup
 
 ```js
-cy.track("Whole page with default params");
+cy.vrtStart();
+```
 
-cy.get("#navbar").track("Separate element with default params");
+### Assert
 
-cy.track("Whole page with additional options", {
+All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
+
+```js
+cy.vrtTrack("Whole page with default params");
+
+cy.get("#navbar").vrtTrack("Separate element with default params");
+
+cy.vrtTrack("Whole page with additional options", {
   os: "MacOS",
   device: "Cloud agent",
   diffTollerancePercent: 1,
@@ -77,5 +90,12 @@ Viewport is taken from `Cypress.config()`
 
 Browser is taken from `Cypress.browser.name`
 
+### Teadown
+
+```js
+cy.vrtStop();
+```
+
 ## Examples
+
 https://github.com/Visual-Regression-Tracker/examples-js

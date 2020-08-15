@@ -1,10 +1,13 @@
 {
-    "env": {
-        "visualRegressionTracker": {
-            "apiUrl": "http://localhost:4200",
-            "branchName": "develop",
-            "project": "Default project",
-            "apiKey": "XHGDZDFD3GMJDNM87JKEMP0JS1G5"
-        }
+  "baseUrl": "https://example.cypress.io",
+  "video": false,
+  "screenshotOnRunFailure": false,
+  "env": {
+    "visualRegressionTracker": {
+      "apiUrl": "http://localhost:4200",
+      "branchName": "develop",
+      "project": "Default project",
+      "apiKey": "M7X93CSR67MH76NNKCQ6KDQS18K8"
     }
+  }
 }
