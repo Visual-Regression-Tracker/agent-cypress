@@ -80,6 +80,7 @@ export const addVrtTrackCommand = () =>
               os: options?.os,
               device: options?.device,
               diffTollerancePercent: options?.diffTollerancePercent,
+              ignoreAreas: options?.ignoreAreas,
             },
             { log: false }
           )

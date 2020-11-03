@@ -12,9 +12,17 @@ declare namespace Cypress {
     vrtStop(): null;
   }
 
+  interface IgnoreArea {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  }
+
   interface TrackOptions {
     os?: string;
     device?: string;
     diffTollerancePercent?: number;
+    ignoreAreas?: IgnoreArea[];
   }
 }
