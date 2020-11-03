@@ -16,5 +16,13 @@ declare namespace Cypress {
     os?: string;
     device?: string;
     diffTollerancePercent?: number;
+    ignoreAreas?: IgnoreArea[];
+  }
+
+  interface IgnoreArea {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
   }
 }
