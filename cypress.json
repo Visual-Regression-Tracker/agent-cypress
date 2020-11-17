@@ -12,7 +12,8 @@
       "branchName": "develop",
       "project": "Default project",
       "apiKey": "4G16TTD8E54Q6DN1YSXVD8YHSCH3",
-      "enableSoftAssert": true
+      "enableSoftAssert": true,
+      "ciBuildId": null
     }
   }
 }

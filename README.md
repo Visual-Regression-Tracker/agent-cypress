@@ -48,20 +48,29 @@ module.exports = (on, config) => {
 {
   "env": {
     "visualRegressionTracker": {
-      // apiUrl - URL where backend is running
+      // URL where backend is running
+      // Required
       "apiUrl": "http://localhost:4200",
 
-      // project - Project name or ID
+      // Project name or ID
+      // Required
       "project": "Default project",
 
-      // apiKey - User apiKey
-      "apiKey": "F3GCS56KVA4168HAN53YN31ASSVG",
+      // User apiKey
+      // Required
+      "apiKey": "tXZVHX0EA4YQM1MGDD",
 
-      // branch - Current git branch
+      // Current git branch
+      // Required
       "branchName": "develop",
 
-      // enableSoftAssert - Log errors instead of exceptions
-      "enableSoftAssert": false
+      // Log errors instead of throwing exceptions
+      // Optional - default false
+      "enableSoftAssert": true,
+
+      // Unique ID related to one CI build
+      // Optional - default null
+      "ciBuildId": "SOME_UNIQUE_ID",
     }
   }
 }
