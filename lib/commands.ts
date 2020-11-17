@@ -10,7 +10,7 @@ export const addVrtStartCommand = () => {
       cy.task("VRT_START", {}, { log: false })
         .then((err) => {
           if (err) {
-            throw new Error(err);
+            throw new Error(err as string);
           }
         })
         .then(() =>
@@ -34,7 +34,7 @@ export const addVrtStopCommand = () => {
       cy.task("VRT_STOP", {}, { log: false })
         .then((err) => {
           if (err) {
-            throw new Error(err);
+            throw new Error(err as string);
           }
         })
         .then(() =>
@@ -87,7 +87,7 @@ export const addVrtTrackCommand = () =>
         )
         .then((err) => {
           if (err) {
-            throw new Error(err);
+            throw new Error(err as string);
           }
         })
         .then(() =>
