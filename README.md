@@ -40,7 +40,9 @@ module.exports = (on, config) => {
 };
 ```
 
-### Set environment variables
+### Configuration
+
+#### Update cypress config
 
 `<rootDir>/cypress.json`
 
@@ -74,6 +76,35 @@ module.exports = (on, config) => {
     }
   }
 }
+```
+
+#### Or, as JSON config file `vrt.json`
+
+_Used only if not explicit config provided_
+_Is overriden if ENV variables are present_
+
+```json
+{
+  "apiUrl": "http://localhost:4200",
+  "project": "Default project",
+  "apiKey": "tXZVHX0EA4YQM1MGDD",
+  "ciBuildId": "commit_sha",
+  "branchName": "develop",
+  "enableSoftAssert": false
+}
+```
+
+#### Or, as environment variables
+
+_Used only if not explicit config provided_
+
+```
+VRT_APIURL="http://localhost:4200"
+VRT_PROJECT="Default project"
+VRT_APIKEY="tXZVHX0EA4YQM1MGDD"
+VRT_CIBUILDID="commit_sha"
+VRT_BRANCHNAME="develop"
+VRT_ENABLESOFTASSERT=true
 ```
 
 ## Usage
