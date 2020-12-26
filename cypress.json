@@ -2,16 +2,13 @@
   "baseUrl": "https://example.cypress.io",
   "video": false,
   "screenshotOnRunFailure": false,
-  "retries": {
-    "runMode": 1,
-    "openMode": 3
-  },
+  "retries": 0,
   "env": {
     "visualRegressionTracker": {
       "apiUrl": "http://localhost:4200",
       "branchName": "develop",
-      "project": "Default project",
-      "apiKey": "4G16TTD8E54Q6DN1YSXVD8YHSCH3",
+      "project": "test",
+      "apiKey": "5H90NFWM6BMWWDMWKG8T11DWW22Y",
       "enableSoftAssert": true,
       "ciBuildId": null
     }
