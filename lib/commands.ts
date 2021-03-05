@@ -68,7 +68,7 @@ const trackWithRetry = (
     }
 
     if (options.retryLimit <= 0) {
-      cy.task("PROCESS_RESULT", result, { log: false });
+      cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false });
       return;
     }
 
@@ -106,7 +106,7 @@ const trackImage = (
     .then(() => cy.task("ENCODE_IMAGE", { imagePath }, { log: false }))
     .then((imageBase64) =>
       cy.task(
-        "TRACK_IMAGE",
+        "VRT_TRACK_IMAGE",
         {
           name,
           imageBase64,
