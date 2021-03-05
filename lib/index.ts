@@ -24,5 +24,6 @@ declare namespace Cypress {
     device?: string;
     diffTollerancePercent?: number;
     ignoreAreas?: IgnoreArea[];
+    retryLimit?: number;
   }
 }
