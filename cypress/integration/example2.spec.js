@@ -2,14 +2,13 @@
 
 context("Visual Regression Tracker2", () => {
   beforeEach(() => {
-    cy.visit("/commands/location");
+    cy.visit("/commands/viewport");
   });
 
   it("example2", () => {
-    // cy.get("#navbar").should("be.visible");
-    cy.vrtTrack("Whole page1");
+    cy.get("#navbar").should("be.visible");
 
-    cy.vrtTrack("Whole page2", { retryLimit: 1 });
+    cy.vrtTrack("Whole page2");
 
     cy.get("#navbar").vrtTrack("Separate element2");
 
