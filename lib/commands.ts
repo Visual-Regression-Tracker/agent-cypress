@@ -54,7 +54,7 @@ export const addVrtTrackCommand = () =>
         () => trackImage(subject, name, options),
         (result) => shouldStopRetry(result),
         (result) => checkResult(result),
-        options.retryLimit
+        options?.retryLimit
       );
     }
   );
