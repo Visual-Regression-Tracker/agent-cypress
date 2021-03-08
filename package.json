@@ -3,7 +3,7 @@
   "version": "4.7.0",
   "description": "Visual Regression Tracker integration plugin",
   "scripts": {
-    "test": "jest",
+    "test": "cypress run --spec 'cypress/integration/regression.spec.ts'",
     "build": "tsc",
     "semantic-release": "semantic-release"
   },
