@@ -21,11 +21,3 @@ import "./commands";
 
 /// <reference types="cypress" />
 /// <reference path="../../dist/index.d.ts" />
-
-before(() => {
-  cy.vrtStart();
-});
-
-after(() => {
-  cy.vrtStop();
-});
