@@ -2,6 +2,13 @@
 
 import { TestRunResponse, TestStatus } from "@visual-regression-tracker/sdk-js";
 
+const log = (message: string) =>
+  Cypress.log({
+    name: "Visual Regression Tracker",
+    displayName: "VRT",
+    message,
+  });
+
 export const addVrtStartCommand = () => {
   Cypress.Commands.add(
     "vrtStart",
@@ -37,21 +44,6 @@ export const addVrtStopCommand = () => {
     }
   );
 };
-
-export const addVrtTrackCommand = () =>
-  Cypress.Commands.add(
-    "vrtTrack",
-    {
-      prevSubject: ["optional", "element", "window", "document"],
-    },
-    (subject, name, options) => {
-      trackWithRetry(
-        () => trackImage(subject, name, options),
-        (result) => shouldStopRetry(result as TestRunResponse),
-        options
-      );
-    }
-  );
 
 const trackWithRetry = (
   trackFn: () => Cypress.Chainable<unknown>,
@@ -122,9 +114,17 @@ const trackImage = (
     );
 };
 
-const log = (message: string) =>
-  Cypress.log({
-    name: "Visual Regression Tracker",
-    displayName: "VRT",
-    message,
-  });
+export const addVrtTrackCommand = () =>
+  Cypress.Commands.add(
+    "vrtTrack",
+    {
+      prevSubject: ["optional", "element", "window", "document"],
+    },
+    (subject, name, options) => {
+      trackWithRetry(
+        () => trackImage(subject, name, options),
+        (result) => shouldStopRetry(result as TestRunResponse),
+        options
+      );
+    }
+  );
