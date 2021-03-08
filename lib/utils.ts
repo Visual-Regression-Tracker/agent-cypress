@@ -13,22 +13,16 @@ export const trackWithRetry = (
   trackFn: () => Cypress.Chainable<TestRunResponse>,
   shouldStopFn: (result: TestRunResponse) => boolean,
   onStopFn: (result: TestRunResponse) => Cypress.Chainable<unknown>,
-  options: {
-    retryLimit: number;
-  } = {
-    retryLimit: 2,
-  }
+  retryLimit: number = 2
 ): Cypress.Chainable<unknown> => {
   return trackFn().then((result) => {
-    if (options.retryLimit <= 0 || shouldStopFn(result)) {
+    if (retryLimit <= 0 || shouldStopFn(result)) {
       onStopFn(result);
       return;
     }
 
-    log(`Diff found... Remaining retry attempts **${options.retryLimit}**`);
-    return trackWithRetry(trackFn, shouldStopFn, onStopFn, {
-      retryLimit: options.retryLimit - 1,
-    });
+    log(`Diff found... Remaining retry attempts **${retryLimit}**`);
+    return trackWithRetry(trackFn, shouldStopFn, onStopFn, retryLimit - 1);
   });
 };
 

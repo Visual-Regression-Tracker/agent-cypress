@@ -48,9 +48,7 @@ describe("Regression suite", () => {
         cy.stub().as("trackFn").resolves(testRunResponce),
         cy.stub().as("shouldStopFn").returns(false),
         cy.stub().as("checkResult"),
-        {
-          retryLimit: 5,
-        }
+        5
       );
 
       cy.get("@trackFn").should("have.callCount", 6);
