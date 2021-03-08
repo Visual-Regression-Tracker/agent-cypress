@@ -4,11 +4,12 @@
   "description": "Visual Regression Tracker integration plugin",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Visual-Regression-Tracker/agent-cypress.git"
+    "url": "https://github.com/Visual-Regression-Tracker/agent-cypress.git"
   },
   "keywords": [
     "regression",
@@ -30,7 +31,8 @@
     "cypress": "^6.6.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.3",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "semantic-release": "^17.4.1"
   },
   "publishConfig": {
     "access": "public"
