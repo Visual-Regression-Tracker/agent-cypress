@@ -61,7 +61,7 @@ export const trackImage = (
           name,
           imageBase64,
           browser: Cypress.browser.name,
-          viewport: options?.viewport ? options.viewport : Cypress.config("viewportWidth") * pixelRatio + "x" + Cypress.config("viewportHeight") * pixelRatio,
+          viewport: options?.viewport ?? `${Cypress.config("viewportWidth") * pixelRatio}x${Cypress.config("viewportHeight") * pixelRatio}`,
           pixelRatio,
           os: options?.os,
           device: options?.device,

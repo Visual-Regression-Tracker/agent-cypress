@@ -37,6 +37,7 @@ declare namespace Cypress {
   }
 
   interface TrackOptions {
+    viewport?: string;
     os?: string;
     device?: string;
     diffTollerancePercent?: number;

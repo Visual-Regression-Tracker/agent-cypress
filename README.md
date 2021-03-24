@@ -125,6 +125,7 @@ cy.vrtTrack("Whole page with default params");
 cy.get("#navbar").vrtTrack("Separate element with default params");
 
 cy.vrtTrack("Whole page with additional options", {
+  viewport: "1920x1080",
   os: "MacOS",
   device: "Cloud agent",
   diffTollerancePercent: 1,
@@ -133,7 +134,7 @@ cy.vrtTrack("Whole page with additional options", {
 });
 ```
 
-Viewport is taken from `Cypress.config()`
+Viewport is taken from `Cypress.config()`, if option is not set
 
 Browser is taken from `Cypress.browser.name`
 
