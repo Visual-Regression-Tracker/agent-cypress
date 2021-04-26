@@ -77,6 +77,12 @@ describe("Regression suite", () => {
           status: TestStatus.new,
         })
       ).to.be.true;
+      expect(
+        utils.shouldStopRetry({
+          ...testRunResponce,
+          status: TestStatus.autoApproved,
+        })
+      ).to.be.true;
     });
   });
 });
