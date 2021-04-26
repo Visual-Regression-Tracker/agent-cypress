@@ -30,9 +30,7 @@ export const checkResult = (result: TestRunResponse) =>
   cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false });
 
 export const shouldStopRetry = (result: TestRunResponse) =>
-  result?.status === TestStatus.ok ||
-  // no need to retry if no baseline
-  result?.status === TestStatus.new;
+  result?.status !== TestStatus.unresolved;
 
 export const trackImage = (
   subject: any,
@@ -61,7 +59,11 @@ export const trackImage = (
           name,
           imageBase64,
           browser: Cypress.browser.name,
-          viewport: options?.viewport ?? `${Cypress.config("viewportWidth") * pixelRatio}x${Cypress.config("viewportHeight") * pixelRatio}`,
+          viewport:
+            options?.viewport ??
+            `${Cypress.config("viewportWidth") * pixelRatio}x${
+              Cypress.config("viewportHeight") * pixelRatio
+            }`,
           pixelRatio,
           os: options?.os,
           device: options?.device,
