@@ -1,5 +1,13 @@
 /* global cy */
 
+before(() => {
+  cy.vrtStart();
+});
+
+after(() => {
+  cy.vrtStop();
+});
+
 context("Visual Regression Tracker", () => {
   beforeEach(() => {
     cy.visit("/commands/viewport");

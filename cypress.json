@@ -7,10 +7,9 @@
     "visualRegressionTracker": {
       "apiUrl": "http://localhost:4200",
       "apiKey": "5H90NFWM6BMWWDMWKG8T11DWW22Y",
-      "project": "e999e73d-d683-4311-928c-d6f8fe82e4f8",
+      "project": "fcf9ab05-4bed-40d6-a033-c178948c9897",
       "branchName": "master",
-      "enableSoftAssert": true,
-      "ciBuildId": null
+      "enableSoftAssert": false
     }
   }
 }

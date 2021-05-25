@@ -27,7 +27,7 @@ export const trackWithRetry = (
 };
 
 export const checkResult = (result: TestRunResponse) =>
-  cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false });
+  cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false }).then(handleError);
 
 export const shouldStopRetry = (result: TestRunResponse) =>
   result?.status !== TestStatus.unresolved;
@@ -51,26 +51,42 @@ export const trackImage = (
       },
     })
     .then(() => log(`tracking ${name}`))
-    .then(() => cy.task("ENCODE_IMAGE", { imagePath }, { log: false }))
-    .then((imageBase64) =>
+    .then(() =>
       cy.task(
-        "VRT_TRACK_IMAGE",
+        "VRT_TRACK_IMAGE_MULTIPART",
         {
-          name,
-          imageBase64,
-          browser: Cypress.browser.name,
-          viewport:
-            options?.viewport ??
-            `${Cypress.config("viewportWidth") * pixelRatio}x${
-              Cypress.config("viewportHeight") * pixelRatio
-            }`,
-          pixelRatio,
-          os: options?.os,
-          device: options?.device,
-          diffTollerancePercent: options?.diffTollerancePercent,
-          ignoreAreas: options?.ignoreAreas,
+          ...toTestRunDto({ name, pixelRatio, options }),
+          imagePath,
         },
         { log: false }
       )
     );
 };
+
+export const handleError = (err: unknown) => {
+  if (err) {
+    throw new Error(err as string);
+  }
+};
+
+export const toTestRunDto = ({
+  name,
+  pixelRatio,
+  options,
+}: {
+  name: string;
+  pixelRatio: number;
+  options: any;
+}) => ({
+  name,
+  browser: Cypress.browser.name,
+  viewport:
+    options?.viewport ??
+    `${Cypress.config("viewportWidth") * pixelRatio}x${
+      Cypress.config("viewportHeight") * pixelRatio
+    }`,
+  os: options?.os,
+  device: options?.device,
+  diffTollerancePercent: options?.diffTollerancePercent,
+  ignoreAreas: options?.ignoreAreas,
+});
