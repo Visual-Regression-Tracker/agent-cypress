@@ -9,6 +9,34 @@ export const log = (message: string) =>
     message,
   });
 
+export const handleError = (err: unknown) => {
+  if (err) {
+    throw new Error(err as string);
+  }
+};
+
+export const toTestRunDto = ({
+  name,
+  pixelRatio,
+  options,
+}: {
+  name: string;
+  pixelRatio: number;
+  options: any;
+}) => ({
+  name,
+  browser: Cypress.browser.name,
+  viewport:
+    options?.viewport ??
+    `${Cypress.config("viewportWidth") * pixelRatio}x${
+      Cypress.config("viewportHeight") * pixelRatio
+    }`,
+  os: options?.os,
+  device: options?.device,
+  diffTollerancePercent: options?.diffTollerancePercent,
+  ignoreAreas: options?.ignoreAreas,
+});
+
 export const trackWithRetry = (
   trackFn: () => Cypress.Chainable<TestRunResponse>,
   shouldStopFn: (result: TestRunResponse) => boolean,
@@ -62,31 +90,3 @@ export const trackImage = (
       )
     );
 };
-
-export const handleError = (err: unknown) => {
-  if (err) {
-    throw new Error(err as string);
-  }
-};
-
-export const toTestRunDto = ({
-  name,
-  pixelRatio,
-  options,
-}: {
-  name: string;
-  pixelRatio: number;
-  options: any;
-}) => ({
-  name,
-  browser: Cypress.browser.name,
-  viewport:
-    options?.viewport ??
-    `${Cypress.config("viewportWidth") * pixelRatio}x${
-      Cypress.config("viewportHeight") * pixelRatio
-    }`,
-  os: options?.os,
-  device: options?.device,
-  diffTollerancePercent: options?.diffTollerancePercent,
-  ignoreAreas: options?.ignoreAreas,
-});
