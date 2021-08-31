@@ -1,6 +1,11 @@
 /* global Cypress, cy */
 
-import { TestRunResponse, TestStatus } from "@visual-regression-tracker/sdk-js";
+import {
+  bufferDtoToFormData,
+  multipartDtoToFormData,
+  TestRunResponse,
+  TestStatus,
+} from "@visual-regression-tracker/sdk-js";
 
 export const log = (message: string) =>
   Cypress.log({
@@ -17,11 +22,11 @@ export const handleError = (err: unknown) => {
 
 export const toTestRunDto = ({
   name,
-  pixelRatio,
+  pixelRatio = 1,
   options,
 }: {
   name: string;
-  pixelRatio: number;
+  pixelRatio?: number;
   options: any;
 }) => ({
   name,
@@ -89,4 +94,36 @@ export const trackImage = (
         { log: false }
       )
     );
+};
+
+export const trackBuffer = (
+  name: string,
+  imageBuffer: Buffer,
+  options: any
+): Cypress.Chainable<TestRunResponse> => {
+  log(`tracking ${name}`);
+  return cy.task(
+    "VRT_TRACK_BUFFER_MULTIPART",
+    {
+      ...toTestRunDto({ name, options }),
+      imageBuffer,
+    },
+    { log: false }
+  );
+};
+
+export const trackBase64 = (
+  name: string,
+  imageBase64: string,
+  options: any
+): Cypress.Chainable<TestRunResponse> => {
+  log(`tracking ${name}`);
+  return cy.task(
+    "VRT_TRACK_IMAGE_BASE64",
+    {
+      ...toTestRunDto({ name, options }),
+      imageBase64,
+    },
+    { log: false }
+  );
 };

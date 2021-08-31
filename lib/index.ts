@@ -24,6 +24,22 @@ declare namespace Cypress {
       >
     ): Chainable<null>;
 
+    vrtTrackBuffer(
+      name: string,
+      imageBuffer: Buffer,
+      options?: Partial<
+        Loggable & Timeoutable & ScreenshotOptions & TrackOptions
+      >
+    ): Chainable<null>;
+
+    vrtTrackBase64(
+      name: string,
+      imageBase64: string,
+      options?: Partial<
+        Loggable & Timeoutable & ScreenshotOptions & TrackOptions
+      >
+    ): Chainable<null>;
+
     vrtStart(): null;
 
     vrtStop(): null;
