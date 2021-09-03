@@ -38,6 +38,7 @@ export const toTestRunDto = ({
     }`,
   os: options?.os,
   device: options?.device,
+  customTags: options?.customTags,
   diffTollerancePercent: options?.diffTollerancePercent,
   ignoreAreas: options?.ignoreAreas,
 });
