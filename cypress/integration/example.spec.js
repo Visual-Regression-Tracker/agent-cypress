@@ -32,6 +32,7 @@ context("Visual Regression Tracker", () => {
     cy.vrtTrack("With additional options", {
       os: "MacOS",
       device: "Cloud agent",
+      customTags: "Cloud, DarkTheme, Auth",
       diffTollerancePercent: 0,
       ignoreAreas: [
         {

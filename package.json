@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Visual-Regression-Tracker/agent-cypress#readme",
   "dependencies": {
-    "@visual-regression-tracker/sdk-js": "5.1.1"
+    "@visual-regression-tracker/sdk-js": "5.2.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",

@@ -132,6 +132,7 @@ cy.vrtTrack("Whole page with additional options", {
   viewport: "1920x1080",
   os: "MacOS",
   device: "Cloud agent",
+  customTags: "Cloud, DarkTheme, Auth",
   diffTollerancePercent: 1,
   ignoreAreas: [{ x: 1, y: 2, width: 100, height: 200 }],
   retryLimit: 2,

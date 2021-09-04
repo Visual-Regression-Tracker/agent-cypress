@@ -10,6 +10,7 @@ declare namespace Cypress {
      *    cy.get("#id").vrtTrack("name", {
      *       os: "MacOS",
      *       device: "Cloud agent",
+     *       customTags: "Cloud, DarkTheme, Auth",
      *       diffTollerancePercent: 1.23,
      *       ignoreAreas: [
      *         {x: 1, y: 2, width: 100, height: 200}
@@ -56,6 +57,7 @@ declare namespace Cypress {
     viewport?: string;
     os?: string;
     device?: string;
+    customTags?: string;
     diffTollerancePercent?: number;
     ignoreAreas?: IgnoreArea[];
     retryLimit?: number;
