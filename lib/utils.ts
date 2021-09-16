@@ -40,6 +40,7 @@ export const toTestRunDto = ({
   device: options?.device,
   customTags: options?.customTags,
   diffTollerancePercent: options?.diffTollerancePercent,
+  keepScreenshot: options?.keepScreenshot,
   ignoreAreas: options?.ignoreAreas,
 });
 

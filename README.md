@@ -134,6 +134,7 @@ cy.vrtTrack("Whole page with additional options", {
   device: "Cloud agent",
   customTags: "Cloud, DarkTheme, Auth",
   diffTollerancePercent: 1,
+  keepScreenshot: false, // Keep screenshot copy on the user's disk
   ignoreAreas: [{ x: 1, y: 2, width: 100, height: 200 }],
   retryLimit: 2,
 });

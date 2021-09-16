@@ -12,6 +12,7 @@ declare namespace Cypress {
      *       device: "Cloud agent",
      *       customTags: "Cloud, DarkTheme, Auth",
      *       diffTollerancePercent: 1.23,
+     *       keepScreenshot: false,
      *       ignoreAreas: [
      *         {x: 1, y: 2, width: 100, height: 200}
      *       ],
@@ -59,6 +60,7 @@ declare namespace Cypress {
     device?: string;
     customTags?: string;
     diffTollerancePercent?: number;
+    keepScreenshot?: boolean;
     ignoreAreas?: IgnoreArea[];
     retryLimit?: number;
   }
