@@ -48,7 +48,7 @@ export const trackWithRetry = (
   shouldStopFn: (result: TestRunResponse) => boolean,
   onStopFn: (result: TestRunResponse) => Cypress.Chainable<unknown>,
   retryLimit: number = 2
-): Cypress.Chainable<unknown> => {
+): unknown => {
   return trackFn().then((result) => {
     if (retryLimit <= 0 || shouldStopFn(result)) {
       onStopFn(result);
