@@ -41,6 +41,7 @@ export const toTestRunDto = ({
   customTags: options?.customTags,
   diffTollerancePercent: options?.diffTollerancePercent,
   ignoreAreas: options?.ignoreAreas,
+  keepScreenshot: options?.keepScreenshot,
 });
 
 export const trackWithRetry = (

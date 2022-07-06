@@ -34,6 +34,7 @@ context("Visual Regression Tracker", () => {
       device: "Cloud agent",
       customTags: "Cloud, DarkTheme, Auth",
       diffTollerancePercent: 0,
+      keepScreenshot: true,
       ignoreAreas: [
         {
           x: 0,
