@@ -136,6 +136,7 @@ cy.vrtTrack("Whole page with additional options", {
   diffTollerancePercent: 1,
   ignoreAreas: [{ x: 1, y: 2, width: 100, height: 200 }],
   retryLimit: 2,
+  keepScreenshot: false, // Keep screenshot local copy, false by default
 });
 ```
 

@@ -15,13 +15,17 @@ declare namespace Cypress {
      *       ignoreAreas: [
      *         {x: 1, y: 2, width: 100, height: 200}
      *       ],
-     *       retryLimit: 5
+     *       retryLimit: 5,
+     *       keepScreenshot: false,
      *    })
      */
     vrtTrack(
       name: string,
       options?: Partial<
-        Loggable & Timeoutable & ScreenshotOptions & TrackOptions
+        Loggable &
+          Timeoutable &
+          ScreenshotOptions &
+          TrackOptions & { keepScreenshot?: boolean }
       >
     ): Chainable<null>;
 
