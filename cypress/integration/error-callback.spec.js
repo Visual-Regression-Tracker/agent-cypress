@@ -14,7 +14,7 @@ before(() => {
 
 after(() => {
     cy.vrtStop();
-    assert.lengthOf(err, 2)
+    assert.lengthOf(vrtErrors, 2)
 });
 
 context("Error Callback", () => {
