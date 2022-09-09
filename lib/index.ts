@@ -26,7 +26,8 @@ declare namespace Cypress {
           Timeoutable &
           ScreenshotOptions &
           TrackOptions & { keepScreenshot?: boolean }
-      >
+      >,
+      errorCallback?: (err:string) => void
     ): Chainable<null>;
 
     vrtTrackBuffer(

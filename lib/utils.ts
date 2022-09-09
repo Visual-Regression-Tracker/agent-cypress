@@ -61,8 +61,15 @@ export const trackWithRetry = (
   });
 };
 
-export const checkResult = (result: TestRunResponse) =>
-  cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false }).then(handleError);
+export const checkResult = (
+  result: TestRunResponse,
+  errorCallback?: (err:string) => void
+) => cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false }).then(err=>{
+  if(err && errorCallback){
+    errorCallback(err as string);
+  }
+  handleError(err)
+});
 
 export const shouldStopRetry = (result: TestRunResponse) =>
   result?.status !== TestStatus.unresolved;
