@@ -63,10 +63,12 @@ export const trackWithRetry = (
 
 export const checkResult = (
   result: TestRunResponse,
-  errorCallback?: (err:string) => void
+  errorCallback?: (err:string) => boolean
 ) => cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false }).then(err=>{
   if(err && errorCallback){
-    errorCallback(err as string);
+    if(errorCallback(err as string)){
+      return;
+    }
   }
   handleError(err)
 });
