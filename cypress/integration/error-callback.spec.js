@@ -1,10 +1,11 @@
 /* global cy */
-const vrtErrors=[]
+/// <reference types="cypress" />
+const vrtErrors=[];
 
 function vrtTrack(name){
-    cy.vrtTrack(name, null, (err)=>{
-        vrtErrors.push(err)
-        return true
+    cy.vrtTrack(name, null, (err) => {
+        vrtErrors.push(err);
+        return true;
     })
 }
 
@@ -14,7 +15,7 @@ before(() => {
 
 after(() => {
     cy.vrtStop();
-    assert.lengthOf(vrtErrors, 2)
+    expect(vrtErrors).to.have.length(2);
 });
 
 context("Error Callback", () => {
