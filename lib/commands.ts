@@ -44,11 +44,11 @@ export const addVrtTrackCommand = () =>
     {
       prevSubject: ["optional", "element", "window", "document"],
     },
-    (subject, name, options) => {
+    (subject, name, options, errorCallback) => {
       trackWithRetry(
         () => trackImage(subject, name, options),
         (result) => shouldStopRetry(result),
-        (result) => checkResult(result),
+        (result) => checkResult(result, errorCallback),
         options?.retryLimit
       );
     }
