@@ -121,8 +121,6 @@ cy.vrtStart();
 
 ### Assert
 
-All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
-
 ```js
 cy.vrtTrack("Whole page with default params");
 
@@ -137,12 +135,23 @@ cy.vrtTrack("Whole page with additional options", {
   ignoreAreas: [{ x: 1, y: 2, width: 100, height: 200 }],
   retryLimit: 2,
   keepScreenshot: false, // Keep screenshot local copy, false by default
+}, (err)=>{
+  console.log('Screenshot has diff with baseline', err);
+  return true; // Skip failing test
 });
 ```
+##### options (optional)
+
+Allows to set options for taking screenshot. All `options` from `screenshot` command are also supported [more details](https://docs.cypress.io/api/commands/screenshot.html#Arguments)
 
 Viewport is taken from `Cypress.config()`, if option is not set
 
 Browser is taken from `Cypress.browser.name`
+
+##### errorCallbak (optional)
+Allows you to define a callback that receives the error for custom side-effects.
+
+Also allows to override assertion policy. When callback returns `true` this acts similar to `enableSoftAssertions` option in config, but allows to enable soft assertion only for one specific screenshot.
 
 ### Teadown
 
