@@ -6,7 +6,7 @@ function vrtTrack(name){
     cy.vrtTrack(name, null, (err) => {
         vrtErrors.push(err);
         return true;
-    })
+    });
 }
 
 before(() => {
