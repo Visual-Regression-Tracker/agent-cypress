@@ -17,14 +17,10 @@ Npm: https://www.npmjs.com/package/@visual-regression-tracker/agent-cypress
 ```js
 import {
   addVrtTrackCommand,
-  addVrtStartCommand,
-  addVrtStopCommand,
   addVrtTrackBufferCommand,
   addVrtTrackBase64Command,
 } from "@visual-regression-tracker/agent-cypress/dist/commands";
 
-addVrtStartCommand();
-addVrtStopCommand();
 addVrtTrackCommand();
 addVrtTrackBufferCommand();
 addVrtTrackBase64Command();
@@ -115,9 +111,7 @@ VRT_ENABLESOFTASSERT=true
 
 ### Setup
 
-```js
-cy.vrtStart();
-```
+vrtStart and vrtStop are now handled automatically when the testrun starts / ends. No need to call the functions in before and after blocks anymore.
 
 ### Assert
 
