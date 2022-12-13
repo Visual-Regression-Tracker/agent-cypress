@@ -6,8 +6,8 @@
   "env": {
     "visualRegressionTracker": {
       "apiUrl": "http://localhost:4200",
-      "apiKey": "5H90NFWM6BMWWDMWKG8T11DWW22Y",
-      "project": "fcf9ab05-4bed-40d6-a033-c178948c9897",
+      "apiKey": "DEFAULTUSERAPIKEYTOBECHANGED",
+      "project": "7085a3e3-7bf5-4ab8-ac4f-da13f056b1d4",
       "branchName": "master",
       "enableSoftAssert": false
     }

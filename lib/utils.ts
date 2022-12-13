@@ -43,17 +43,17 @@ export const toTestRunDto = ({
   ignoreAreas: options?.ignoreAreas,
   // next two properties actually do not belong to TestRunDto and ideally should be removed from this object
   keepScreenshot: options?.keepScreenshot,
-  retryLimit: options?.retryLimit
+  retryLimit: options?.retryLimit,
 });
 
 export const checkResult = (
   result: TestRunResponse | string,
-  errorCallback?: (err:string) => boolean
+  errorCallback?: (err: string) => boolean
 ) => {
-  if(typeof result === 'string'){
+  if (typeof result === "string") {
     // . this is an error message
-    if(errorCallback){
-      if(errorCallback(result as string)){
+    if (errorCallback) {
+      if (errorCallback(result as string)) {
         return;
       }
     }
