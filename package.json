@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "cypress run --spec 'cypress/integration/regression.spec.ts'",
     "build": "tsc",
     "semantic-release": "semantic-release"
   },
