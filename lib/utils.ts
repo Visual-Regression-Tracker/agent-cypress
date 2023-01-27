@@ -61,9 +61,6 @@ export const checkResult = (
   }
 };
 
-export const shouldStopRetry = (result: TestRunResponse) =>
-  result?.status !== TestStatus.unresolved;
-
 export const trackImage = (
   subject: any,
   name: string,
