@@ -41,40 +41,25 @@ export const toTestRunDto = ({
   customTags: options?.customTags,
   diffTollerancePercent: options?.diffTollerancePercent,
   ignoreAreas: options?.ignoreAreas,
+  // next two properties actually do not belong to TestRunDto and ideally should be removed from this object
   keepScreenshot: options?.keepScreenshot,
+  retryLimit: options?.retryLimit,
 });
-
-export const trackWithRetry = (
-  trackFn: () => Cypress.Chainable<TestRunResponse>,
-  shouldStopFn: (result: TestRunResponse) => boolean,
-  onStopFn: (result: TestRunResponse) => Cypress.Chainable<unknown>,
-  retryLimit: number = 2
-): unknown => {
-  return trackFn().then((result) => {
-    if (retryLimit <= 0 || shouldStopFn(result)) {
-      onStopFn(result);
-      return;
-    }
-
-    log(`Diff found... Remaining retry attempts **${retryLimit}**`);
-    return trackWithRetry(trackFn, shouldStopFn, onStopFn, retryLimit - 1);
-  });
-};
 
 export const checkResult = (
-  result: TestRunResponse,
-  errorCallback?: (err:string) => boolean
-) => cy.task("VRT_PROCESS_ERROR_RESULT", result, { log: false }).then((err) => {
-  if(err && errorCallback){
-    if(errorCallback(err as string)){
-      return;
+  result: TestRunResponse | string,
+  errorCallback?: (err: string) => boolean
+) => {
+  if (typeof result === "string") {
+    // . this is an error message
+    if (errorCallback) {
+      if (errorCallback(result as string)) {
+        return;
+      }
     }
+    handleError(result);
   }
-  handleError(err);
-});
-
-export const shouldStopRetry = (result: TestRunResponse) =>
-  result?.status !== TestStatus.unresolved;
+};
 
 export const trackImage = (
   subject: any,
@@ -97,7 +82,7 @@ export const trackImage = (
     .then(() => log(`tracking ${name}`))
     .then(() =>
       cy.task(
-        "VRT_TRACK_IMAGE_MULTIPART",
+        "VRT_TRACK",
         {
           ...toTestRunDto({ name, pixelRatio, options }),
           imagePath,
@@ -114,7 +99,7 @@ export const trackBuffer = (
 ): Cypress.Chainable<TestRunResponse> => {
   log(`tracking ${name}`);
   return cy.task(
-    "VRT_TRACK_BUFFER_MULTIPART",
+    "VRT_TRACK",
     {
       ...toTestRunDto({ name, options }),
       imageBuffer,
@@ -130,7 +115,7 @@ export const trackBase64 = (
 ): Cypress.Chainable<TestRunResponse> => {
   log(`tracking ${name}`);
   return cy.task(
-    "VRT_TRACK_IMAGE_BASE64",
+    "VRT_TRACK",
     {
       ...toTestRunDto({ name, options }),
       imageBase64,

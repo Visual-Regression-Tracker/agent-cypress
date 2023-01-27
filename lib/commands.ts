@@ -1,10 +1,8 @@
 /* global Cypress, cy */
 import {
   log,
-  shouldStopRetry,
   checkResult,
   trackImage,
-  trackWithRetry,
   handleError,
   trackBase64,
   trackBuffer,
@@ -45,11 +43,8 @@ export const addVrtTrackCommand = () =>
       prevSubject: ["optional", "element", "window", "document"],
     },
     (subject, name, options, errorCallback) => {
-      trackWithRetry(
-        () => trackImage(subject, name, options),
-        (result) => shouldStopRetry(result),
-        (result) => checkResult(result, errorCallback),
-        options?.retryLimit
+      trackImage(subject, name, options).then((result) => 
+        checkResult(result, errorCallback)
       );
     }
   );
