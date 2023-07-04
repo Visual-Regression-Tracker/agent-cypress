@@ -18,7 +18,7 @@
     "visual-regression-tracker"
   ],
   "author": "Pavel Strunkin <pashidlos@gmail.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Visual-Regression-Tracker/agent-cypress/issues"
   },
