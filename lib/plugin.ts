@@ -1,11 +1,9 @@
 import { unlinkSync } from "fs";
 import {
   VisualRegressionTracker,
-  multipartDtoToFormData,
-  bufferDtoToFormData,
 } from "@visual-regression-tracker/sdk-js";
 
-export function addVisualRegressionTrackerPlugin(on, config) {
+export function addVisualRegressionTrackerPlugin(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
   const vrtConfig = config?.env?.visualRegressionTracker;
   let vrt = new VisualRegressionTracker(vrtConfig);
 
