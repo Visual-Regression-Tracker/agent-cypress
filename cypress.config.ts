@@ -7,6 +7,7 @@ import { addVisualRegressionTrackerPlugin } from "./lib/plugin";
 export default defineConfig({
     e2e: {
         baseUrl: "https://example.cypress.io",
+        specPattern: 'cypress/integration/*.spec.ts',
 
         setupNodeEvents(on, config) {
             // `on` is used to hook into various events Cypress emits
