@@ -8,6 +8,8 @@ import {
   trackBuffer,
 } from "./utils";
 
+import {VRT_START, VRT_STOP, VRT_TRACK, VRT_IS_STARTED} from "./utils";
+
 export const addVrtStartCommand = () => {
   Cypress.Commands.add(
     "vrtStart",
@@ -15,7 +17,7 @@ export const addVrtStartCommand = () => {
       prevSubject: ["optional"],
     },
     () => {
-      cy.task("VRT_START", {}, { log: false })
+      cy.task(VRT_START, {}, { log: false })
         .then(handleError)
         .then(() => log("Started"));
     }
@@ -29,7 +31,7 @@ export const addVrtStopCommand = () => {
       prevSubject: ["optional"],
     },
     () => {
-      cy.task("VRT_STOP", {}, { log: false })
+      cy.task(VRT_STOP, {}, { log: false })
         .then(handleError)
         .then(() => log("Stopped"));
     }

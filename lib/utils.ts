@@ -7,6 +7,12 @@ import {
   TestStatus,
 } from "@visual-regression-tracker/sdk-js";
 
+// Task names
+export const VRT_START = "VRT_START";
+export const VRT_STOP = "VRT_STOP";
+export const VRT_TRACK = "VRT_TRACK";
+export const VRT_IS_STARTED = "isStarted";
+
 export const log = (message: string) =>
   Cypress.log({
     name: "Visual Regression Tracker",
@@ -70,6 +76,8 @@ export const trackImage = (
   let pixelRatio: number;
   const target = subject ? cy.wrap(subject) : cy;
 
+  // cy.screenshot() return Type is always Chainable<null>
+  // https://github.com/cypress-io/cypress/issues/21277
   return target
     .screenshot(name, {
       ...options,
@@ -78,11 +86,11 @@ export const trackImage = (
         pixelRatio = props.pixelRatio;
         return options?.onAfterScreenshot;
       },
-    })
+    }) // @ts-ignore
     .then(() => log(`tracking ${name}`))
     .then(() =>
       cy.task(
-        "VRT_TRACK",
+        VRT_TRACK,
         {
           ...toTestRunDto({ name, pixelRatio, options }),
           imagePath,
@@ -99,7 +107,7 @@ export const trackBuffer = (
 ): Cypress.Chainable<TestRunResponse> => {
   log(`tracking ${name}`);
   return cy.task(
-    "VRT_TRACK",
+    VRT_TRACK,
     {
       ...toTestRunDto({ name, options }),
       imageBuffer,
@@ -115,7 +123,7 @@ export const trackBase64 = (
 ): Cypress.Chainable<TestRunResponse> => {
   log(`tracking ${name}`);
   return cy.task(
-    "VRT_TRACK",
+    VRT_TRACK,
     {
       ...toTestRunDto({ name, options }),
       imageBase64,
