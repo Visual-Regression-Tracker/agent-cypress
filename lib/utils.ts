@@ -8,9 +8,18 @@ import {
 } from "@visual-regression-tracker/sdk-js";
 
 // Task names
-export const VRT_START = "VRT_START";
-export const VRT_STOP = "VRT_STOP";
-export const VRT_TRACK = "VRT_TRACK";
+export const VRT_TASK_START = "VRT_START";
+export const VRT_TASK_STOP = "VRT_STOP";
+export const VRT_TASK_TRACK = "VRT_TRACK";
+
+// Command names
+export const VRT_COMMAND_START = "vrtStart";
+export const VRT_COMMAND_STOP = "vrtStop";
+export const VRT_COMMAND_TRACK = "vrtTrack";
+export const VRT_COMMAND_TRACK_BUFFER = "vrtTrackBuffer";
+export const VRT_COMMAND_TRACK_BASE64 = "vrtTrackBase64";
+
+// Private method name in sdk-js, FIXME: public?
 export const VRT_IS_STARTED = "isStarted";
 
 export const log = (message: string) =>
@@ -78,26 +87,24 @@ export const trackImage = (
 
   // cy.screenshot() return Type is always Chainable<null>
   // https://github.com/cypress-io/cypress/issues/21277
-  return target
-    .screenshot(name, {
-      ...options,
-      onAfterScreenshot: (el, props) => {
-        imagePath = props.path;
-        pixelRatio = props.pixelRatio;
-        return options?.onAfterScreenshot;
-      },
-    }) // @ts-ignore
-    .then(() => log(`tracking ${name}`))
-    .then(() =>
+  // @ts-ignore
+  return target.screenshot(name, {
+    ...options,
+    onAfterScreenshot: ($el, props) => {
+      imagePath = props.path;
+      pixelRatio = props.pixelRatio;
+      log(`tracking ${name}`);
       cy.task(
-        VRT_TRACK,
+        VRT_TASK_TRACK,
         {
           ...toTestRunDto({ name, pixelRatio, options }),
           imagePath,
         },
         { log: false }
-      )
-    );
+      );
+      return options?.onAfterScreenshot;
+    },
+  });
 };
 
 export const trackBuffer = (
@@ -107,7 +114,7 @@ export const trackBuffer = (
 ): Cypress.Chainable<TestRunResponse> => {
   log(`tracking ${name}`);
   return cy.task(
-    VRT_TRACK,
+    VRT_TASK_TRACK,
     {
       ...toTestRunDto({ name, options }),
       imageBuffer,
@@ -123,7 +130,7 @@ export const trackBase64 = (
 ): Cypress.Chainable<TestRunResponse> => {
   log(`tracking ${name}`);
   return cy.task(
-    VRT_TRACK,
+    VRT_TASK_TRACK,
     {
       ...toTestRunDto({ name, options }),
       imageBase64,
