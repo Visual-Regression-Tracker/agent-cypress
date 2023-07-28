@@ -56,9 +56,4 @@ export function addVisualRegressionTrackerPlugin(
       }
     },
   });
-
-  // https://docs.cypress.io/api/plugins/after-screenshot-api
-  on('after:screenshot', (details: Cypress.ScreenshotDetails) => {
-    /* ... */
-  })
 }
