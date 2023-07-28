@@ -3,7 +3,7 @@
   "version": "5.6.0",
   "description": "Visual Regression Tracker integration plugin for Cypress",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/",
   "scripts": {
     "build": "tsc",
     "semantic-release": "semantic-release"

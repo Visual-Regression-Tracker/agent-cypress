@@ -53,10 +53,25 @@ export const addVrtTrackCommand = () =>
       prevSubject: ["optional", "element", "window", "document"],
     },
     (subject, name, options, errorCallback) => {
-      console.log("vrtTrack", subject, name, options);
-      trackImage(subject, name, options).then((result) =>
-        checkResult(result, errorCallback)
-      );
+      let imagePath: string;
+      let pixelRatio: number;
+      const target = subject ? cy.wrap(subject) : cy;
+      // cy.screenshot() return Type is always Chainable<null>
+      // https://github.com/cypress-io/cypress/issues/21277
+      target.screenshot(name, {
+        ...options,
+        onAfterScreenshot: async ($el, props) => {
+          imagePath = props.path;
+          pixelRatio = props.pixelRatio;
+          
+          return options?.onAfterScreenshot;
+        }// @ts-ignore
+      }).then(() => {
+        return trackImage(name, imagePath, pixelRatio, options).then((result) =>
+          checkResult(result, errorCallback)
+        );        
+      });
+    
     }
   );
 
@@ -87,9 +102,14 @@ export const addVrtTrackBase64Command = () =>
   );
 
 /**
- * Add all Visual Tracker commands to Cypress namespace.
+ * Add all Visual Tracker commands to Cypress namespace, so that these methods become available:
+ * * `cy.vrtStart();`
+ * * `cy.vrtStop();`
+ * * `cy.vrtTrack();`
+ * * `cy.vrtTrackBuffer();`
+ * * `cy.vrtTrackBase64();`
  */
-export default function addVrtCommands() {
+export const addVrtCommands = () => {
   addVrtStartCommand();
   addVrtStopCommand();
   addVrtTrackCommand();

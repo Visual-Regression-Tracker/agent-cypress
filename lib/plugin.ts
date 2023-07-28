@@ -19,9 +19,9 @@ export function addVisualRegressionTrackerPlugin(
 ) {
   const vrtConfig = config?.env?.visualRegressionTracker;
   const vrt = new VisualRegressionTracker(vrtConfig);
-  console.log("How come?");
 
   on("task", {
+    // Start visual regression tracking unless it has already been started
     [VRT_TASK_START]: async (props) => {
       try {
         if (!vrt[VRT_IS_STARTED]()) {
@@ -32,6 +32,7 @@ export function addVisualRegressionTrackerPlugin(
       }
       return null;
     },
+    // Stop visual regression tracking if it was started
     [VRT_TASK_STOP]: async (props) => {
       try {
         if (vrt[VRT_IS_STARTED]()) {
@@ -42,6 +43,7 @@ export function addVisualRegressionTrackerPlugin(
       }
       return null;
     },
+    // Track the given test case and optionally clean up the screenshot
     [VRT_TASK_TRACK]: async (props) => {
       try {
         return await vrt.track(props, props?.retryLimit);
@@ -54,4 +56,9 @@ export function addVisualRegressionTrackerPlugin(
       }
     },
   });
+
+  // https://docs.cypress.io/api/plugins/after-screenshot-api
+  on('after:screenshot', (details: Cypress.ScreenshotDetails) => {
+    /* ... */
+  })
 }

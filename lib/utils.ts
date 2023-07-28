@@ -77,34 +77,21 @@ export const checkResult = (
 };
 
 export const trackImage = (
-  subject: any,
   name: string,
+  imagePath: string,
+  pixelRatio: number,
   options: any
 ): Cypress.Chainable<TestRunResponse> => {
-  let imagePath: string;
-  let pixelRatio: number;
-  const target = subject ? cy.wrap(subject) : cy;
+  log(`tracking ${name}`);
 
-  // cy.screenshot() return Type is always Chainable<null>
-  // https://github.com/cypress-io/cypress/issues/21277
-  // @ts-ignore
-  return target.screenshot(name, {
-    ...options,
-    onAfterScreenshot: ($el, props) => {
-      imagePath = props.path;
-      pixelRatio = props.pixelRatio;
-      log(`tracking ${name}`);
-      cy.task(
-        VRT_TASK_TRACK,
-        {
-          ...toTestRunDto({ name, pixelRatio, options }),
-          imagePath,
-        },
-        { log: false }
-      );
-      return options?.onAfterScreenshot;
+  return cy.task(
+    VRT_TASK_TRACK,
+    {
+      ...toTestRunDto({ name, pixelRatio, options }),
+      imagePath,
     },
-  });
+    { log: false }
+  );
 };
 
 export const trackBuffer = (
