@@ -6,6 +6,8 @@ Npm: https://www.npmjs.com/package/@visual-regression-tracker/agent-cypress
 
 ## Installation
 
+Please note that the minimum supported Cypress version is [`12.17.1`, released in 10th July 2023](https://docs.cypress.io/guides/references/changelog#12-17-1).
+
 ### Add package
 
 `npm install @visual-regression-tracker/agent-cypress`
