@@ -12,9 +12,21 @@ Please note that the minimum supported Cypress version is [`12.17.1`, released i
 
 `npm install @visual-regression-tracker/agent-cypress`
 
-### Add command
+### Add commands
 
-`<rootDir>/cypress/support/commands.js`
+`<rootDir>/cypress/support/e2e.js` or `<rootDir>/cypress/support/component.js`
+
+All available commands:
+
+```js
+import {
+  addVrtCommands,
+} from "@visual-regression-tracker/agent-cypress";
+
+addVrtCommands();
+```
+
+or one by one:
 
 ```js
 import {
@@ -23,7 +35,7 @@ import {
   addVrtStopCommand,
   addVrtTrackBufferCommand,
   addVrtTrackBase64Command,
-} from "@visual-regression-tracker/agent-cypress/dist/commands";
+} from "@visual-regression-tracker/agent-cypress";
 
 addVrtStartCommand();
 addVrtStopCommand();
@@ -34,27 +46,32 @@ addVrtTrackBase64Command();
 
 ### Add plugin
 
-`<rootDir>/cypress/plugins/index.js`
+`<rootDir>/cypress.config.js`
 
 ```js
-const {
-  addVisualRegressionTrackerPlugin,
-} = require("@visual-regression-tracker/agent-cypress/dist/plugin");
+import { defineConfig } from 'cypress';
+import { addVisualRegressionTrackerPlugin } from "@visual-regression-tracker/agent-cypress";
 
-module.exports = (on, config) => {
-  addVisualRegressionTrackerPlugin(on, config);
-};
+export default defineConfig({
+  // e2e or component, depending of testing style
+  e2e: {
+    setupNodeEvents (on, config) => {
+      addVisualRegressionTrackerPlugin(on, config);
+    }
+  }
+});
 ```
 
 ### Configuration
 
-#### Update cypress config
+#### Update Cypress config
 
-`<rootDir>/cypress.json`
+`<rootDir>/cypress.config.js`
 
 ```js
-{
-  "env": {
+export default defineConfig({
+
+  env: {
     "visualRegressionTracker": {
       // URL where backend is running
       // Required
@@ -85,7 +102,7 @@ module.exports = (on, config) => {
       "ciBuildId": "SOME_UNIQUE_ID",
     }
   }
-}
+});
 ```
 
 #### Or, as JSON config file `vrt.json`
