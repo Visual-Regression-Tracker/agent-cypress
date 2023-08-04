@@ -51,21 +51,11 @@ export const addVrtTrackCommand = () =>
     {
       // https://docs.cypress.io/api/cypress-api/custom-commands#Arguments
       prevSubject: ["optional", "element", "window", "document"],
-    },// @ts-ignore
+    }, // @ts-ignore
     (subject, name, options, errorCallback) => {
-      const target = subject ? cy.wrap(subject) : cy;
-      // cy.screenshot() return Type is always Chainable<null>
-      // https://github.com/cypress-io/cypress/issues/21277
-      return target.screenshot(name, {
-        ...options,
-        onAfterScreenshot: async ($el, props) => {
-          trackImage(name, props.path, props.pixelRatio, options).then((result: any) =>
-            checkResult(result, errorCallback)
-          );
-          
-          return options?.onAfterScreenshot;
-        }
-      });
+      trackImage(subject, name, options).then((result: any) =>
+        checkResult(result, errorCallback)
+      );
     }
   );
 
@@ -109,4 +99,4 @@ export const addVrtCommands = () => {
   addVrtTrackCommand();
   addVrtTrackBufferCommand();
   addVrtTrackBase64Command();
-}
+};
