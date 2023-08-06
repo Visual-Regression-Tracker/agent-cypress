@@ -6,16 +6,24 @@ import {
   handleError,
   trackBase64,
   trackBuffer,
+  VRT_TASK_START,
+  VRT_TASK_STOP,
+  VRT_COMMAND_START,
+  VRT_COMMAND_STOP,
+  VRT_COMMAND_TRACK,
+  VRT_COMMAND_TRACK_BUFFER,
+  VRT_COMMAND_TRACK_BASE64,
 } from "./utils";
 
 export const addVrtStartCommand = () => {
   Cypress.Commands.add(
-    "vrtStart",
+    VRT_COMMAND_START,
     {
-      prevSubject: ["optional"],
+      // optional: may start a chain, or use an existing chain: (dual command)
+      prevSubject: "optional",
     },
     () => {
-      cy.task("VRT_START", {}, { log: false })
+      cy.task(VRT_TASK_START, {}, { log: false })
         .then(handleError)
         .then(() => log("Started"));
     }
@@ -24,12 +32,13 @@ export const addVrtStartCommand = () => {
 
 export const addVrtStopCommand = () => {
   Cypress.Commands.add(
-    "vrtStop",
+    VRT_COMMAND_STOP,
     {
-      prevSubject: ["optional"],
+      // optional: may start a chain, or use an existing chain: (dual command)
+      prevSubject: "optional",
     },
     () => {
-      cy.task("VRT_STOP", {}, { log: false })
+      cy.task(VRT_TASK_STOP, {}, { log: false })
         .then(handleError)
         .then(() => log("Stopped"));
     }
@@ -38,12 +47,13 @@ export const addVrtStopCommand = () => {
 
 export const addVrtTrackCommand = () =>
   Cypress.Commands.add(
-    "vrtTrack",
+    VRT_COMMAND_TRACK,
     {
+      // https://docs.cypress.io/api/cypress-api/custom-commands#Arguments
       prevSubject: ["optional", "element", "window", "document"],
-    },
+    }, // @ts-ignore
     (subject, name, options, errorCallback) => {
-      trackImage(subject, name, options).then((result) => 
+      trackImage(subject, name, options).then((result: any) =>
         checkResult(result, errorCallback)
       );
     }
@@ -51,7 +61,7 @@ export const addVrtTrackCommand = () =>
 
 export const addVrtTrackBufferCommand = () =>
   Cypress.Commands.add(
-    "vrtTrackBuffer",
+    VRT_COMMAND_TRACK_BUFFER,
     {
       prevSubject: false,
     },
@@ -64,7 +74,7 @@ export const addVrtTrackBufferCommand = () =>
 
 export const addVrtTrackBase64Command = () =>
   Cypress.Commands.add(
-    "vrtTrackBase64",
+    VRT_COMMAND_TRACK_BASE64,
     {
       prevSubject: false,
     },
@@ -74,3 +84,19 @@ export const addVrtTrackBase64Command = () =>
       );
     }
   );
+
+/**
+ * Add all Visual Tracker commands to Cypress namespace, so that these methods become available:
+ * * `cy.vrtStart();`
+ * * `cy.vrtStop();`
+ * * `cy.vrtTrack();`
+ * * `cy.vrtTrackBuffer();`
+ * * `cy.vrtTrackBase64();`
+ */
+export const addVrtCommands = () => {
+  addVrtStartCommand();
+  addVrtStopCommand();
+  addVrtTrackCommand();
+  addVrtTrackBufferCommand();
+  addVrtTrackBase64Command();
+};
