@@ -1,3 +1,4 @@
+/// <reference types="cypress" preserve="true" />
 import { unlinkSync } from "fs";
 import { VisualRegressionTracker } from "@visual-regression-tracker/sdk-js";
 import {

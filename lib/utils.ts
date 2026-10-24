@@ -1,3 +1,5 @@
+/// <reference types="cypress" preserve="true" />
+/// <reference types="node" preserve="true" />
 /* global Cypress, cy */
 
 import {
