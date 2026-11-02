@@ -19,7 +19,16 @@ export function addVisualRegressionTrackerPlugin(
   config: Cypress.PluginConfigOptions
 ) {
   const vrtConfig = config?.env?.visualRegressionTracker;
-  const vrt = new VisualRegressionTracker(vrtConfig);
+  // sdk-js skips VRT_* variables when given an explicit config
+  const vrt = new VisualRegressionTracker(
+    vrtConfig && {
+      ...vrtConfig,
+      sourceBranch:
+        vrtConfig.sourceBranch ||
+        vrtConfig.baselineBranchName ||
+        process.env.VRT_SOURCEBRANCH,
+    }
+  );
 
   on("task", {
     // Start visual regression tracking unless it has already been started
