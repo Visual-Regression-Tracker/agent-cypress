@@ -1,20 +1,32 @@
 name: CI
 
 on:
-  pull_request:
+  push:
     branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22, 24, 26]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
       - name: Install npm dependencies
         run: npm ci
@@ -24,3 +36,11 @@ jobs:
 
       - name: Unit tests
         run: npm test
+
+  build:
+    # the required status check on master; a skipped job would count as passed
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: test "${{ needs.test.result }}" = success
