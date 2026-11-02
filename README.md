@@ -101,6 +101,7 @@ it("home page", () => {
     os: "linux",
     device: "desktop",
     customTags: "smoke,dark",
+    comment: "Logged out",
     diffTollerancePercent: 1,
     ignoreAreas: [{ x: 1, y: 2, width: 100, height: 200 }],
     retryLimit: 2,
@@ -116,6 +117,7 @@ it("home page", () => {
 | `os`, `device`, `customTags` | Tell baselines of the same name apart |
 | `viewport` | Defaults to `viewportWidth`x`viewportHeight` times the pixel ratio |
 | `diffTollerancePercent` | Allowed difference, in percent of all pixels (the spelling is the API's) |
+| `comment` | Shown with the test run |
 | `ignoreAreas` | `[{ x, y, width, height }]` in pixels, left out of the comparison |
 | `retryLimit` | Retries while the result is `unresolved`, default 2 |
 | `keepScreenshot` | Keep the local screenshot file, default `false` |
