@@ -55,7 +55,7 @@ import { addVisualRegressionTrackerPlugin } from "@visual-regression-tracker/age
 export default defineConfig({
   // e2e or component, depending of testing style
   e2e: {
-    setupNodeEvents (on, config) => {
+    setupNodeEvents(on, config) {
       addVisualRegressionTrackerPlugin(on, config);
     }
   }
@@ -89,9 +89,10 @@ export default defineConfig({
       // Required
       "branchName": "develop",
 
-      // Branch with baseline
+      // Branch to take baselines from instead of the project's main branch
       // Optional - when not set, main branch from project settings is used
-      "baselineBranchName": "release",
+      // Also read from VRT_SOURCEBRANCH when not set here
+      "sourceBranch": "release",
 
       // Log errors instead of throwing exceptions
       // Optional - default false
@@ -117,6 +118,7 @@ _Is overriden if ENV variables are present_
   "apiKey": "tXZVHX0EA4YQM1MGDD",
   "ciBuildId": "commit_sha",
   "branchName": "develop",
+  "sourceBranch": "release",
   "enableSoftAssert": false
 }
 ```
@@ -131,9 +133,14 @@ VRT_PROJECT="Default project"
 VRT_APIKEY="tXZVHX0EA4YQM1MGDD"
 VRT_CIBUILDID="commit_sha"
 VRT_BRANCHNAME="develop"
-VRT_BASELINEBRANCHNAME="release"
+VRT_SOURCEBRANCH="release"
 VRT_ENABLESOFTASSERT=true
 ```
+
+`sourceBranch` replaces `baselineBranchName` (`VRT_BASELINEBRANCHNAME`), which
+the server never read. The old name still works as an alias and logs a
+deprecation warning; like the other `VRT_*` variables, `VRT_BASELINEBRANCHNAME`
+is read only when `visualRegressionTracker` is not set in the Cypress config.
 
 ## Usage
 

@@ -28,7 +28,7 @@
     "node": ">=16.16.0"
   },
   "dependencies": {
-    "@visual-regression-tracker/sdk-js": "5.7.2"
+    "@visual-regression-tracker/sdk-js": "^5.8.0"
   },
   "devDependencies": {
     "@jest/globals": "^30.5.2",
