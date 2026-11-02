@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -36,3 +36,11 @@ jobs:
 
       - name: Unit tests
         run: npm test
+
+  build:
+    # the required status check on master; a skipped job would count as passed
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: test "${{ needs.test.result }}" = success
