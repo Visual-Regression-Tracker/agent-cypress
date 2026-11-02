@@ -2,12 +2,7 @@
 /// <reference types="node" preserve="true" />
 /* global Cypress, cy */
 
-import {
-  bufferDtoToFormData,
-  multipartDtoToFormData,
-  TestRunResponse,
-  TestStatus,
-} from "@visual-regression-tracker/sdk-js";
+import { TestRunResponse } from "@visual-regression-tracker/sdk-js";
 
 // Task names
 export const VRT_TASK_START = "VRT_START";
@@ -56,6 +51,7 @@ export const toTestRunDto = ({
   os: options?.os,
   device: options?.device,
   customTags: options?.customTags,
+  comment: options?.comment,
   diffTollerancePercent: options?.diffTollerancePercent,
   ignoreAreas: options?.ignoreAreas,
   // next two properties actually do not belong to TestRunDto and ideally should be removed from this object

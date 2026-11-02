@@ -16,6 +16,7 @@ declare namespace Cypress {
      *       os: "MacOS",
      *       device: "Cloud agent",
      *       customTags: "Cloud, DarkTheme, Auth",
+     *       comment: "Logged out",
      *       diffTollerancePercent: 1.23,
      *       ignoreAreas: [
      *         {x: 1, y: 2, width: 100, height: 200}
@@ -68,6 +69,7 @@ declare namespace Cypress {
     os?: string;
     device?: string;
     customTags?: string;
+    comment?: string;
     diffTollerancePercent?: number;
     ignoreAreas?: IgnoreArea[];
     retryLimit?: number;
