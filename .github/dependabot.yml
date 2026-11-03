@@ -8,9 +8,6 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
-      # ts-jest supports TypeScript < 7 only
-      - dependency-name: "typescript"
-        update-types: ["version-update:semver-major"]
     groups:
       npm-minor-patch:
         patterns:
@@ -25,6 +22,19 @@ updates:
           - major
       npm-security:
         applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: "/.github/release"
+    schedule:
+      interval: weekly
+    ignore:
+      # semantic-release 25 cannot render conventional-changelog-conventionalcommits 10
+      - dependency-name: "conventional-changelog-conventionalcommits"
+        update-types: ["version-update:semver-major"]
+    groups:
+      release-tooling:
         patterns:
           - "*"
 

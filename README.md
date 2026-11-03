@@ -170,6 +170,14 @@ Every push to `master` runs [semantic-release](https://semantic-release.gitbook.
 It then publishes to npm through trusted publishing with provenance, tags `vX.Y.Z`, and writes the GitHub release.
 The `version` field in `package.json` is a placeholder. The released version lives in the tags and on npm.
 
+### Release candidates
+
+Every push to `next` releases a pre-release of the next version, `X.Y.Z-rc.N` (`6.0.0-rc.1` once a breaking change is in). It goes to npm under the `next` dist-tag, never `latest`: `npm install @visual-regression-tracker/agent-cypress@next` installs the candidate, and a plain install keeps getting the last stable release. Its GitHub release is marked as a pre-release.
+
+Breaking changes go into `next` through pull requests that target it. Merge `master` into `next` when `master` gets new commits.
+
+To release the final version, merge `next` into `master` with a merge commit, not a squash, so that semantic-release still sees the breaking commits. That push releases it to `latest`. The repository deletes merged branches, so create `next` again from `master` before the next round of candidates.
+
 ## License
 
 [Apache-2.0](LICENSE)
