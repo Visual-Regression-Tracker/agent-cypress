@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+      - next
+concurrency:
+  group: release
 jobs:
   release:
     name: Release

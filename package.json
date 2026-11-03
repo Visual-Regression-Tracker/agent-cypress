@@ -53,6 +53,13 @@
     "minimatch": "^11.0.1"
   },
   "release": {
+    "branches": [
+      "master",
+      {
+        "name": "next",
+        "prerelease": "rc"
+      }
+    ],
     "preset": "conventionalcommits"
   }
 }
