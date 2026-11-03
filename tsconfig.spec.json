@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  // cypress ships its own chai types, which clash with the @types/chai vitest brings
+  "compilerOptions": { "noEmit": true, "skipLibCheck": true },
+  "exclude": []
+}

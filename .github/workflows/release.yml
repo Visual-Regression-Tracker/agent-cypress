@@ -40,5 +40,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        # semantic-release 25 cannot render conventional-changelog-conventionalcommits 10
-        run: npx -p semantic-release@25.0.9 -p conventional-changelog-conventionalcommits@9.3.1 semantic-release
+        # own manifest without a lockfile: the npm bundled in semantic-release has advisories no override can reach
+        run: |
+          npm install --prefix .github/release --no-package-lock --no-audit --no-fund
+          .github/release/node_modules/.bin/semantic-release
