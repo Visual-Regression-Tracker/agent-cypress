@@ -28,6 +28,19 @@ updates:
         patterns:
           - "*"
 
+  - package-ecosystem: npm
+    directory: "/.github/release"
+    schedule:
+      interval: weekly
+    ignore:
+      # semantic-release 25 cannot render conventional-changelog-conventionalcommits 10
+      - dependency-name: "conventional-changelog-conventionalcommits"
+        update-types: ["version-update:semver-major"]
+    groups:
+      release-tooling:
+        patterns:
+          - "*"
+
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
