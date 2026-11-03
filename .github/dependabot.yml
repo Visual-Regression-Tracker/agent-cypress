@@ -8,9 +8,6 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
-      # ts-jest supports TypeScript < 7 only
-      - dependency-name: "typescript"
-        update-types: ["version-update:semver-major"]
     groups:
       npm-minor-patch:
         patterns:

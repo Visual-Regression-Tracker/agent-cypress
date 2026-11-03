@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "tsc -p tsconfig.spec.json && vitest run",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -34,23 +34,16 @@
     "@visual-regression-tracker/sdk-js": "^5.8.1"
   },
   "devDependencies": {
-    "@jest/globals": "^30.5.2",
-    "@types/jest": "^30.0.0",
     "@types/node": "^22.20.5",
     "cypress": "^16.2.1",
-    "jest": "^30.5.2",
-    "ts-jest": "^29.4.15",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
   },
   "peerDependencies": {
     "cypress": ">=12.17.1"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "overrides": {
-    "glob": "^14.0.2",
-    "minimatch": "^11.0.1"
   },
   "release": {
     "preset": "conventionalcommits"
