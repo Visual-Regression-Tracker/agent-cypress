@@ -46,6 +46,13 @@
     "access": "public"
   },
   "release": {
+    "branches": [
+      "master",
+      {
+        "name": "next",
+        "prerelease": "rc"
+      }
+    ],
     "preset": "conventionalcommits"
   }
 }
