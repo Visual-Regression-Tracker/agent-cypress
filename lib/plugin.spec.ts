@@ -1,5 +1,5 @@
 // Explicit import: the global `expect` is Cypress' chai one
-import { afterEach, beforeEach, describe, expect, it } from "@jest/globals";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createServer, IncomingMessage, Server } from "http";
 import { AddressInfo } from "net";
 import { addVisualRegressionTrackerPlugin } from "./plugin";
