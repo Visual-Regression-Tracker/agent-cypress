@@ -31,7 +31,7 @@
     "node": ">=26"
   },
   "dependencies": {
-    "@visual-regression-tracker/sdk-js": "^5.8.1"
+    "@visual-regression-tracker/sdk-js": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
